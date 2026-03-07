@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cart</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#F4F3FF;
+
+            margin:0;
+        }
+
+     /* NAVBAR */
+        .navbar{
+            background:#6C5CE7;   /* purple navbar */
+            color:white;
+            padding:15px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .nav-links a{
+            color:white;
+            text-decoration:none;
+            margin-left:20px;
+            font-weight:bold;
+        }
+
+        .nav-links a:hover{
+            opacity:0.8;
+        }
+
+        /* cart badge */
+        .cart-count{
+            background:white;
+            padding:3px 8px;
+            border-radius:50%;
+            color:#6C5CE7;
+            margin-left:5px;
+            font-weight:bold;
+        }
+
+       table{
+    width:100%;
+    background:white;
+    border-collapse:collapse;
+    text-align:center;   /* ⭐ MAIN FIX */
+}
+
+th, td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:center;   /* ensure same alignment */
+}
+
+        /* BUTTON */
+        button{
+            background:#6C5CE7;
+            color:white;
+            border:none;
+            padding:10px 18px;
+            border-radius:6px;
+            cursor:pointer;
+            font-weight:bold;
+        }
+
+        button:hover{
+            background:#5A4BD6;
+        }
+
+        /* ⭐ CENTER PLACE ORDER BUTTON */
+        .order-btn-container{
+            text-align:center;
+            margin-top:25px;
+        }
+
+        /* CENTER CART LAYOUT */
+
+.cart-container{
+    max-width:900px;
+    margin:40px auto;
+}
+
+/* optional heading center */
+h1{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+    </style>
+</head>
+
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<h1>Your Cart</h1>
+
+<div class="cart-container">
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Qty</th>
+    </tr>
+
+    <tr th:each="item : ${cartItems}">
+        <td th:text="${item.productName}"></td>
+        <td th:text="${item.price}"></td>
+        <td>
+            <form th:action="@{/cart/decrease/{id}(id=${item.id})}" method="post" style="display:inline;">
+                <button type="submit">-</button>
+            </form>
+
+            <span th:text="${item.quantity}" style="margin:0 10px;"></span>
+
+            <form th:action="@{/cart/increase/{id}(id=${item.id})}" method="post" style="display:inline;">
+                <button type="submit">+</button>
+            </form>
+        </td>
+
+        <td>
+            <form th:action="@{/cart/remove/{id}(id=${item.id})}" method="post">
+                <button style="background:#e74c3c;">Remove</button>
+            </form>
+        </td>
+    </tr>
+</table>
+    <br>
+
+    <form th:action="@{/order/place}" method="post">
+        <div class="order-btn-container">
+            <button>Place Order</button>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+</body>
+</html>

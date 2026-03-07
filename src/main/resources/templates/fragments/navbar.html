@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="navbar">
+
+    <nav class="navbar">
+        <div class="logo">
+            🛒 Cartify
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+            <a href="/cart" class="cart-link">
+                Cart
+                <span class="cart-count"
+                      th:text="${cartCount != null ? cartCount : 0}">
+                </span>
+            </a>
+        </div>
+    </nav>
+
+</div>
+
+</body>
+</html>

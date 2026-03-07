@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shop</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background:#f5f5f5;
+            margin:0;
+        }
+
+        .navbar{
+            background:#131921;
+            color:white;
+            padding:15px 30px;
+            font-size:20px;
+        }
+
+        .container{
+            padding:30px;
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            padding:15px;
+            border-radius:8px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+            text-align:center;
+        }
+
+        img{
+            height:150px;
+            object-fit:cover;
+        }
+
+        button{
+            background:#ff9900;
+            border:none;
+            padding:10px;
+            margin-top:10px;
+            cursor:pointer;
+            border-radius:5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    🛒 MyStore
+</div>
+
+<div class="container">
+
+    <div class="card" th:each="p : ${products}">
+        <img th:src="@{/admin/products/image/{id}(id=${p.id})}">
+
+        <h3 th:text="${p.name}"></h3>
+
+        <p>₹ <span th:text="${p.price}"></span></p>
+
+        <form th:action="@{/cart/add/{id}(id=${p.id})}" method="post">
+            <button>Add to Cart</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
