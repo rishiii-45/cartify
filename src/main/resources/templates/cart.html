@@ -267,9 +267,11 @@ gap:12px;
 margin-top:25px;
 ">
 
-        <button class="place-btn">
-            Place Order
-        </button>
+        <form action="/order/place" method="post">
+            <button type="submit" class="place-btn">
+                Place Order
+            </button>
+        </form>
 
         <a href="/products" class="continue-btn">
             Continue Shopping
