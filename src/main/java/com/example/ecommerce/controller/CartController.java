@@ -8,6 +8,7 @@ import com.example.ecommerce.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/cart")
@@ -24,7 +25,7 @@ public class CartController {
 
     // ADD TO CART
     @PostMapping("/add/{id}")
-    public String addToCart(@PathVariable Long id) {
+    public String addToCart(@PathVariable Long id, RedirectAttributes redirectAttributes) {
 
         Product product = productService.getProductById(id);
 
@@ -35,7 +36,9 @@ public class CartController {
 
         cartService.save(item);
 
-        return "redirect:/cart";
+        redirectAttributes.addFlashAttribute("success", "Added to cart!");
+
+        return "redirect:/products";
     }
 
     // VIEW CART
@@ -48,6 +51,14 @@ public class CartController {
 
         // ⭐ ADD THIS
         model.addAttribute("cartCount", items.size());
+
+        double total = items.stream()
+                .mapToDouble(i -> i.getPrice() * i.getQuantity())
+                .sum();
+
+        model.addAttribute("total", total);
+
+        model.addAttribute("activePage","cart");
 
         return "cart";
     }

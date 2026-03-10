@@ -5,153 +5,275 @@
 
     <style>
 
-        body{
-            font-family: Arial, sans-serif;
-            margin:0;
-            background:#F4F3FF;   /* light purple background */
-        }
+  body{
+  margin:0;
+  padding-top:63px;
+  font-family:Arial, sans-serif;
 
-        /* NAVBAR */
-        .navbar{
-            background:#6C5CE7;   /* purple navbar */
-            color:white;
-            padding:15px 40px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-        }
+  background-image:url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
 
-        .logo{
-            font-size:24px;
-            font-weight:bold;
-        }
+  color:white;
+  }
 
-        .nav-links a{
-            color:white;
-            text-decoration:none;
-            margin-left:20px;
-            font-weight:bold;
-        }
+         .navbar{
+         background:#333;
+         color:white;
+         padding:15px;
+         display:flex;
+         justify-content:space-between;
+         }
 
-        .nav-links a:hover{
-            opacity:0.8;
-        }
+         .navbar a{
+         color:white;
+         margin:0 10px;
+         text-decoration:none;
+         }
 
-        /* cart badge */
-        .cart-count{
-            background:white;
-            padding:3px 8px;
-            border-radius:50%;
-            color:#6C5CE7;
-            margin-left:5px;
-            font-weight:bold;
-        }
+         .hero{
+         text-align:center;
+         padding:80px;
+         background:#eee;
+         }
 
-        /* PRODUCTS GRID */
+         .products{
+         display:flex;
+         gap:20px;
+         padding:40px;
+         justify-content:center;
+         flex-wrap:wrap;
+         }
 
-        .container{
-            padding:40px;
-        }
+         h1{
+text-shadow:0px 4px 12px rgba(0,0,0,0.7);
+}
 
-        .products{
-            display:grid;
-            grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-            gap:25px;
-        }
+         .card{
+         border:1px solid #ddd;
+         padding:15px;
+         width:200px;
+         text-align:center;
+         }
 
-        /* CARD */
-
-        .card{
-            background:white;
-            padding:20px;
-            border-radius:10px;
-            text-align:center;
-            box-shadow:0 2px 8px rgba(0,0,0,0.1);
-            transition:0.3s;
-        }
-
-        .card:hover{
-            transform:translateY(-8px);
-            box-shadow:0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .card img{
-            width:100%;
-            height:200px;
-            object-fit:cover;
-            border-radius:8px;
-        }
-
-        /* price color (kept ecommerce-style red) */
-        .price{
-            color:#B12704;
-            font-size:18px;
-            font-weight:bold;
-        }
-
-        /* BUTTON */
-
-        button{
-            background:#6C5CE7;   /* purple button */
-            color:white;
-            border:none;
-            padding:10px 18px;
-            border-radius:5px;
-            cursor:pointer;
-            font-weight:bold;
-        }
-
-        button:hover{
-            background:#5A4BD6;   /* darker purple */
-        }
-
-        /* IMAGE BOX */
-
-        .image-box{
-            height:200px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            background:#f8f8ff;
-            border-radius:8px;
-        }
-
-        .image-box img{
-            max-height:180px;
-            max-width:100%;
-            object-fit:contain;
-        }
+         footer{
+         background:#333;
+         color:white;
+         text-align:center;
+         padding:20px;
+         margin-top:40px;
+         }
 
     </style>
+
 </head>
 
 <body>
 
-<div th:replace="fragments/navbar :: navbar"></div>
+<div style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+box-sizing:border-box;
+z-index:1000;
 
-<div class="container">
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:black;
+color:white;
+font-family:Arial;
+box-shadow:0 2px 15px rgba(0,0,0,0.4);
+">
 
-    <div class="products">
+    <div style="font-size:22px;font-weight:bold;">
+        🛒 Cartify
+    </div>
 
-        <div class="card" th:each="p : ${products}">
+    <div style="display:flex;gap:25px;align-items:center;">
 
-            <div class="image-box">
-                <img th:src="@{/admin/products/image/{id}(id=${p.id})}">
-            </div>
+        <a href="/home" style="color:white;text-decoration:none;font-weight:600;border-bottom:2px solid #c084fc;">Home</a>
+        <a href="/products" style="color:white;text-decoration:none;">Products</a>
+        <a href="/about" style="color:white;text-decoration:none;">About</a>
 
 
-            <h3 th:text="${p.name}"></h3>
+        <a href="/logout" style="
+background:#ef4444;
+padding:6px 14px;
+border-radius:6px;
+color:white;
+text-decoration:none;">
+            Logout
+        </a>
 
-            <p class="price">₹ <span th:text="${p.price}"></span></p>
+    </div>
 
-            <form th:action="@{/cart/add/{id}(id=${p.id})}" method="post">
-                <button>Add to Cart</button>
-            </form>
+</div>
+
+<div style="background:rgba(0,0,0,0.55); min-height:100vh;">
+
+<section style="
+text-align:center;
+padding:140px 20px 120px 20px;
+">
+
+    <h1 style="
+font-size:56px;
+margin-bottom:15px;
+font-weight:700;
+">
+        Welcome to Cartify!
+    </h1>
+
+    <p style="
+font-size:22px;
+opacity:0.85;
+margin-bottom:35px;
+">
+        Your one stop shopping website
+    </p>
+
+    <h2 style="
+font-size:34px;
+margin-bottom:40px;
+font-weight:600;
+">
+        Hello <span th:text="${username}"></span>👋
+    </h2>
+
+    <a href="/products">
+        <button style="
+background:#4c1d95;
+color:white;
+border:none;
+padding:12px 28px;
+border-radius:8px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+transition:all 0.25s ease;
+box-shadow:0 6px 18px rgba(76,29,149,0.45);
+"
+                onmouseover="this.style.background='#6d28d9'; this.style.transform='translateY(-2px)'"
+                onmouseout="this.style.background='#4c1d95'; this.style.transform='translateY(0)'"
+        >
+            Browse Products
+        </button>
+    </a>
+
+</section>
+
+<section style="
+padding:80px 20px;
+text-align:center;
+">
+
+    <h2 style="
+font-size:36px;
+margin-bottom:50px;
+">
+        Why Shop With Us
+    </h2>
+
+    <div style="
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+">
+
+        <div style="
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(8px);
+padding:35px;
+width:260px;
+border-radius:14px;
+transition:0.3s;
+cursor:pointer;
+"
+             onmouseover="this.style.transform='translateY(-10px)'; this.style.background='rgba(255,255,255,0.18)'"
+             onmouseout="this.style.transform='translateY(0px)'; this.style.background='rgba(255,255,255,0.08)'"
+        >
+
+            <div style="font-size:40px;">🚚</div>
+
+            <h3 style="margin-top:15px;">Fast Delivery</h3>
+
+            <p style="opacity:0.8;">
+                Quick shipping across India
+            </p>
+
+        </div>
+
+
+        <div style="
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(8px);
+padding:35px;
+width:260px;
+border-radius:14px;
+transition:0.3s;
+cursor:pointer;
+"
+             onmouseover="this.style.transform='translateY(-10px)'; this.style.background='rgba(255,255,255,0.18)'"
+             onmouseout="this.style.transform='translateY(0px)'; this.style.background='rgba(255,255,255,0.08)'"
+        >
+
+            <div style="font-size:40px;">💳</div>
+
+            <h3 style="margin-top:15px;">Secure Payment</h3>
+
+            <p style="opacity:0.8;">
+                100% safe and secure transactions
+            </p>
+
+        </div>
+
+
+        <div style="
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(8px);
+padding:35px;
+width:260px;
+border-radius:14px;
+transition:0.3s;
+cursor:pointer;
+"
+             onmouseover="this.style.transform='translateY(-10px)'; this.style.background='rgba(255,255,255,0.18)'"
+             onmouseout="this.style.transform='translateY(0px)'; this.style.background='rgba(255,255,255,0.08)'"
+        >
+
+            <div style="font-size:40px;">⭐</div>
+
+            <h3 style="margin-top:15px;">Quality Products</h3>
+
+            <p style="opacity:0.8;">
+                Carefully selected premium items
+            </p>
 
         </div>
 
     </div>
-</div>
 
+</section>
+
+
+
+<footer style="
+background:black;
+color:#e9d5ff;
+text-align:center;
+padding:12px;
+font-size:14px;
+">
+
+    © 2026 Cartify • support@cartify.com • All Rights Reserved
+
+</footer>
+</div>
 </body>
 </html>

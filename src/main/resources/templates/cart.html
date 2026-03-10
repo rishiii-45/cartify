@@ -7,10 +7,19 @@
 
         body{
             font-family:Arial;
-            background:#F4F3FF;
+            background:#e9d5ff;
 
             margin:0;
-        }
+            overflow-x:hidden;
+           min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+main{
+    flex:1;
+    padding-top:70px;
+}
 
      /* NAVBAR */
         .navbar{
@@ -63,17 +72,18 @@ th, td{
 
         /* BUTTON */
         button{
-            background:#6C5CE7;
-            color:white;
-            border:none;
-            padding:10px 18px;
-            border-radius:6px;
-            cursor:pointer;
+           background:#140833;
+color:white;
+border:none;
+padding:10px 22px;
+border-radius:6px;
+cursor:pointer;
+transition:0.2s;
             font-weight:bold;
         }
 
         button:hover{
-            background:#5A4BD6;
+            background:#4c1d95;
         }
 
         /* ⭐ CENTER PLACE ORDER BUTTON */
@@ -85,8 +95,12 @@ th, td{
         /* CENTER CART LAYOUT */
 
 .cart-container{
-    max-width:900px;
+    width:900px;
     margin:40px auto;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 /* optional heading center */
@@ -94,22 +108,122 @@ h1{
     text-align:center;
     margin-bottom:25px;
 }
+        .browse-btn{
+background:#2e1a6b;
+color:white;
+padding:12px 32px;
+border:none;
+border-radius:6px;
+font-weight:600;
+font-size:15px;
+cursor:pointer;
+text-decoration:none;
+}
 
+.browse-btn:hover{
+background:#3b2388;
+}
+
+        .empty-cart{
+text-align:center;
+margin-top:80px;
+}
+
+        .place-btn{
+background:#2e1a6b;
+color:white;
+padding:12px 32px;
+border:none;
+border-radius:6px;
+font-weight:600;
+font-size:15px;
+cursor:pointer;
+}
+
+.place-btn:hover{
+background:#3b2388;
+}
+
+.continue-btn{
+background:#c4b5fd;
+color:#2e1a6b;
+padding:9px 22px;
+border-radius:6px;
+font-weight:600;
+text-decoration:none;
+font-size:14px;
+}
+
+.continue-btn:hover{
+background:#a78bfa;
+}
+
+        .cart-table-scroll{
+max-height:320px;
+overflow-y:auto;
+width:100%;
+}
+        .cart-table-scroll table{
+        width:100%;
+        border-collapse:collapse;
+        }
+
+            .cart-table-scroll thead th{
+    position: sticky;
+    top: 0;
+    background: #f5f5dc;
+    z-index: 2;
+    text-align:center;
+}
     </style>
 </head>
 
-<body>
-<div th:replace="fragments/navbar :: navbar"></div>
+<body style="
+display:flex;
+flex-direction:column;
+min-height:100vh;
+">
+<div th:replace="fragments/navbar :: navbar(${cartCount},${activePage})"></div>
 
-<h1>Your Cart</h1>
+<main>
+<div style="flex:1;">
 
-<div class="cart-container">
+<h1 th:if="${!#lists.isEmpty(cartItems)}" style="
+text-align:center;
+margin-top:60px;
+font-size:36px;
+font-weight:bold;
+color:#1f2937;
+">
+    🛒 Your Shopping Cart
+</h1>
+
+<div th:if="${#lists.isEmpty(cartItems)}" class="empty-cart" style="
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:60vh;
+text-align:center;
+">
+    <h2>Your Cart is Empty 🛒</h2>
+    <p>Add something from the products page.</p>
+    <a href="/products" class="browse-btn">
+        Browse Products
+    </a>
+</div>
+
+<div class="cart-container" th:if="${!#lists.isEmpty(cartItems)}">
+    <div class="cart-table-scroll">
 <table>
+    <thead>
     <tr>
         <th>Product</th>
         <th>Price</th>
         <th>Qty</th>
+        <th>Action</th>
     </tr>
+    </thead>
 
     <tr th:each="item : ${cartItems}">
         <td th:text="${item.productName}"></td>
@@ -133,16 +247,52 @@ h1{
         </td>
     </tr>
 </table>
-    <br>
+    </div>
+    <div class="cart-total" style="
+text-align:center;
+margin-top:25px;
+font-size:20px;
+font-weight:700;
+color:#1f2937;
+font-family:inherit;
+">
+        Total: ₹ <span th:text="${total}"></span>
+    </div>
 
-    <form th:action="@{/order/place}" method="post">
-        <div class="order-btn-container">
-            <button>Place Order</button>
-        </div>
-    </form>
+    <div class="cart-buttons" style="
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:12px;
+margin-top:25px;
+">
 
+        <button class="place-btn">
+            Place Order
+        </button>
 
+        <a href="/products" class="continue-btn">
+            Continue Shopping
+        </a>
+
+    </div>
 </div>
+</main>
+    <footer style="
+
+bottom:0;
+left:0;
+width:100%;
+background:#140833;
+color:#e9d5ff;
+text-align:center;
+padding:12px;
+font-size:14px;
+">
+        © 2026 Cartify • support@cartify.com • All Rights Reserved
+    </footer>
+
+
 
 
 

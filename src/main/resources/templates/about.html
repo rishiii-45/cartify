@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<style>
+
+    body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f3f4f6;
+    }
+
+    /* main container */
+    .about-container{
+max-width:900px;
+margin:120px auto;
+background:#e9d5ff;
+padding:50px;
+border-radius:14px;
+text-align:center;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,0.15),
+0 0 60px rgba(79,70,229,0.25);
+}
+
+.about-container:hover{
+transform:translateY(-6px);
+transition:0.3s;
+}
+
+    /* heading */
+   .about-container h1{
+font-size:42px;
+margin-bottom:18px;
+color:#111827;
+letter-spacing:1px;
+}
+
+    /* paragraph */
+    .about-container p{
+    font-size:18px;
+    color:#6b7280;
+    line-height:1.6;
+    }
+
+    /* feature boxes */
+    .features{
+    display:flex;
+    justify-content:space-between;
+    margin-top:40px;
+    gap:20px;
+    }
+
+    .feature-card{
+    flex:1;
+    background:#f9fafb;
+    padding:20px;
+    border-radius:10px;
+    transition:0.3s;
+    cursor:pointer;
+    }
+
+    .feature-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    }
+
+</style>
+
+<div th:replace="fragments/navbar :: navbar(${cartCount},${activePage})"></div>
+
+<div class="about-container">
+
+    <div style="font-size:50px;margin-bottom:10px;">
+        🛍️
+    </div>
+    <h1>About Cartify</h1>
+
+    <p>
+        Cartify is a modern online shopping platform built using Spring Boot and Thymeleaf.
+        Browse products, add them to your cart, and enjoy seamless shopping.
+    </p>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <h3>🚚 Fast Delivery</h3>
+            <p>Quick shipping across India.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>💳 Secure Payment</h3>
+            <p>100% safe and secure transactions.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>⭐ Quality Products</h3>
+            <p>Carefully selected premium items.</p>
+        </div>
+
+    </div>
+
+</div>
+<footer style="
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#140833;
+color:#e9d5ff;
+text-align:center;
+padding:12px;
+font-size:14px;
+">
+    © 2026 Cartify • support@cartify.com • All Rights Reserved
+</footer>
+
+</body>
+</html>

@@ -1,27 +1,99 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
 
-<div th:fragment="navbar">
+<div th:fragment="navbar(cartCount,activePage)">
 
-    <nav class="navbar">
-        <div class="logo">
+    <style>
+        .navbar a{
+padding-bottom:8px;
+transition:0.2s;
+}
+
+.active-nav{
+font-weight:600;
+border-bottom:2px solid #c084fc;
+}
+        @keyframes cartPop{
+0%{
+transform:scale(1);
+}
+50%{
+transform:scale(1.4);
+}
+100%{
+transform:scale(1);
+}
+}
+
+.cart-animate{
+animation:cartPop 0.4s ease;
+}
+
+    </style>
+
+    <div style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+box-sizing:border-box;
+z-index:1000;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:#140833;
+color:white;
+font-family:Arial;
+">
+
+        <div style="font-size:22px;font-weight:bold;">
             🛒 Cartify
         </div>
 
-        <div class="nav-links">
+        <div style="display:flex;gap:25px;align-items:center;">
 
-            <a href="/">Home</a>
-            <a href="/cart" class="cart-link">
-                Cart
-                <span class="cart-count"
-                      th:text="${cartCount != null ? cartCount : 0}">
-                </span>
+            <a href="/home" th:classappend="${activePage=='home'} ? 'active-nav' : ''" style="color:white;text-decoration:none;">Home</a>
+
+            <a href="/products" th:classappend="${activePage=='products'} ? 'active-nav' : ''" style="color:white;text-decoration:none;">
+                Products
+
+</span>
             </a>
+
+            <a href="/cart" th:classappend="${activePage=='cart'} ? 'active-nav' : ''" style="color:white;text-decoration:none;position:relative;">
+                Cart
+                <span id="cartBadge" th:if="${cartCount!=null}" th:text="${cartCount}"
+                      style="
+position:absolute;
+top:-8px;
+right:-16px;
+background:#ef4444;
+color:white;
+font-size:11px;
+padding:2px 5px;
+border-radius:100%;
+font-weight:bold;
+">
+</span>
+            </a>
+
+            <a href="/about" th:classappend="${activePage=='about'} ? 'active-nav' : ''" style="color:white;text-decoration:none;">About</a>
+
+
+
+            <a href="/logout"
+               style="background:#ef4444;padding:6px 14px;border-radius:6px;color:white;text-decoration:none;">
+                Logout
+            </a>
+
         </div>
-    </nav>
+
+    </div>
 
 </div>
-
 </body>
 </html>
