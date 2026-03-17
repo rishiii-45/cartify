@@ -27,16 +27,16 @@ https://cartify-nwwr.onrender.com
 ## Screenshots
 
 ### Home Page
-![Home](<img width="1919" height="863" alt="Screenshot 2026-03-14 130803" src="https://github.com/user-attachments/assets/63892cd3-ed72-4ae7-abfb-f0e6f87a3b60" />)
+![Home](https://github.com/user-attachments/assets/63892cd3-ed72-4ae7-abfb-f0e6f87a3b60)
 
 ### Products Page
-![Products](<img width="1919" height="859" alt="Screenshot 2026-03-14 131257" src="https://github.com/user-attachments/assets/399887f2-c0c9-4516-96f3-3bb0c4a2af43" />)
+![Products](https://github.com/user-attachments/assets/399887f2-c0c9-4516-96f3-3bb0c4a2af43)
 
 ### Cart Page
-![Cart](<img width="1898" height="864" alt="Screenshot 2026-03-14 131623" src="https://github.com/user-attachments/assets/5e2be629-6c90-4669-93ff-9296e3ef4a95" />)
+![Cart](https://github.com/user-attachments/assets/5e2be629-6c90-4669-93ff-9296e3ef4a95)
 
 ### Order Page
-![Order](<img width="1886" height="866" alt="Screenshot 2026-03-14 131505" src="https://github.com/user-attachments/assets/357d7a87-4f21-4a7b-b583-0b74fd3602b4" />)
+![Order](https://github.com/user-attachments/assets/357d7a87-4f21-4a7b-b583-0b74fd3602b4)
 
 
 
