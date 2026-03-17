@@ -1,19 +1,56 @@
-# Cartify - E-commerce Web Application
+# 🛒 Cartify – E-Commerce Web Application
 
-Cartify is a simple e-commerce web application built using:
+Cartify is a full-stack e-commerce web application built using Spring Boot and MySQL. It allows users to browse products, add items to cart, and manage orders, along with admin functionalities.
 
-• Spring Boot  
-• Thymeleaf  
-• MySQL (Aiven Cloud Database)  
-• Docker  
-• Render Deployment  
 
-Features:
-- Add products with image upload
-- Product listing
-- Add to cart
+## 🛠️ Tech Stack
+
+- Backend: Spring Boot (Java)
+- Frontend: HTML, CSS, JavaScript, Thymeleaf
+- Database: MySQL (Aiven Cloud)
+- Deployment: Render
+- Containerization: Docker
+
+## Features
+
+- User authentication (login/signup)
+- Product listing and browsing
+- Add to cart functionality
 - Admin product management
-- Images stored in database (BLOB)
+- Image upload and storage (BLOB)
 
-Live Demo:
+
+## Live Demo
 https://cartify-nwwr.onrender.com
+
+
+## Screenshots
+
+### Home Page
+![Home](<img width="1919" height="863" alt="Screenshot 2026-03-14 130803" src="https://github.com/user-attachments/assets/63892cd3-ed72-4ae7-abfb-f0e6f87a3b60" />)
+
+### Products Page
+![Products](<img width="1919" height="859" alt="Screenshot 2026-03-14 131257" src="https://github.com/user-attachments/assets/399887f2-c0c9-4516-96f3-3bb0c4a2af43" />)
+
+### Cart Page
+![Cart](<img width="1898" height="864" alt="Screenshot 2026-03-14 131623" src="https://github.com/user-attachments/assets/5e2be629-6c90-4669-93ff-9296e3ef4a95" />)
+
+### Order Page
+![Order](<img width="1886" height="866" alt="Screenshot 2026-03-14 131505" src="https://github.com/user-attachments/assets/357d7a87-4f21-4a7b-b583-0b74fd3602b4" />)
+
+
+
+## Setup Instructions
+
+1. Clone the repository  
+git clone https://github.com/rishiii-45/cartify
+
+2. Configure database
+
+3. Run application  
+mvn spring-boot:run
+
+
+## Author
+
+Rishirajan K
