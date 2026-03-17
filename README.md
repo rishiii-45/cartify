@@ -3,7 +3,7 @@
 Cartify is a full-stack e-commerce web application built using Spring Boot and MySQL. It allows users to browse products, add items to cart, and manage orders, along with admin functionalities.
 
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - Backend: Spring Boot (Java)
 - Frontend: HTML, CSS, JavaScript, Thymeleaf
